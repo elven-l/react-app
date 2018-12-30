@@ -5,12 +5,36 @@ import * as React from 'react';
 
 const Option = Select.Option;
 
-class SelectItem extends React.Component {
+export interface IProps {
+    eventHander : (value:string) => void,
+    test : string
+  }
+
+class SelectItem extends React.Component<IProps, object> {
+
+   constructor(props: IProps) 
+   {
+        super(props);
+        this.handOnChange.bind(this);
+      
+       // console.log(this.props)
+   }
+
+
+  public  handOnChange (value:string)
+  {
+    
+      this.props.eventHander(value);
+  }
+ 
+ 
+
+
   public render() {
     return (
-        <Select defaultValue="two" style={{ width: 200 }}>
+        <Select defaultValue="two" style={{ width: 200 }} onChange = {this.props.eventHander}>
             <Option value="one">第一个输入框显示</Option>
-            <Option value="two">第一个输入框显示</Option>
+            <Option value="two">第二个输入框显示</Option>
        </Select>
     );
   }

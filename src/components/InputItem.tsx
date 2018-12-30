@@ -5,7 +5,12 @@ import * as React from 'react';
 
 const Search = Input.Search;
 
-class InputItem extends React.Component {
+
+
+class InputItem extends React.Component<object, object> {
+
+ 
+
   public render() {
     return (
             <Search
