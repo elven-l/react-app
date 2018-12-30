@@ -8,6 +8,9 @@
     ]
   },
   "rules": {
-    "object-literal-sort-keys": false //Disable for typescript
+    "object-literal-sort-keys": false, //Disable for typescript
+    "no-console": [
+      false
+    ]
   }
 }

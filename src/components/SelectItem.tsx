@@ -15,18 +15,10 @@ class SelectItem extends React.Component<IProps, object> {
    constructor(props: IProps) 
    {
         super(props);
-        this.handOnChange.bind(this);
+      
       
        // console.log(this.props)
    }
-
-
-  public  handOnChange (value:string)
-  {
-    
-      this.props.eventHander(value);
-  }
- 
  
 
 
