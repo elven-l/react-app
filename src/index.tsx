@@ -7,7 +7,12 @@ import { createStore } from 'redux';
 import { enthusiasm } from './reducers/index';
 import { IStoreState } from './types/index';
 
-const store = createStore<IStoreState>(enthusiasm, {
+import { EnthusiasmAction } from './actions/index';
+
+import { Provider } from 'react-redux';
+
+
+const store = createStore<IStoreState, EnthusiasmAction ,any, any>(enthusiasm, {
   enthusiasmLevel: 1,
   languageName: 'TypeScript',
 });
@@ -17,7 +22,9 @@ const store = createStore<IStoreState>(enthusiasm, {
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <Hello />,
+  <Provider store={store}>
+        <Hello />
+  </Provider>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
