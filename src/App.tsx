@@ -3,8 +3,14 @@ import InputItem from './components/InputItem';
 import SelectItem from './components/SelectItem';
 
 
+
+interface IHtmlModel {
+    type: string,
+    id : string
+}
+
 interface IState {
-     html : any ,
+     html : IHtmlModel[],
      events : any
 }
 
@@ -44,17 +50,18 @@ class App extends React.Component<object, IState> {
             action : "hide"  
          }
         ]
-       };
+      }
+      console.log(this.state);
       
   }
 
 
-  public handleEvents(value: string)
+  public handleEvents(value: string, elementId: string)
   {
-   
-     this.state.events.forEach((element:any) => {
-      console.log(element)
-     });
+     console.log(value,elementId);
+    //  this.state.events.forEach((element:any) => {
+          
+    //  });
   }
 
 
@@ -69,7 +76,7 @@ class App extends React.Component<object, IState> {
                     if (item.type === 'input') {
                       return <InputItem key={item.id} />
                     } else {
-                      return <SelectItem key={item.id} eventHander = {this.handleEvents} test="hahah"   />
+                      return <SelectItem key={item.id} eventHander = {this.handleEvents} elementId= {item.id}  />
                     }  
                 })            
                 
