@@ -1,9 +1,10 @@
 {
-  "name": "antd",
+  "name": "antd-demo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@types/react-redux": "^6.0.11",
+    "antd": "^3.11.6",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
