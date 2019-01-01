@@ -6,7 +6,8 @@ import SelectItem from './components/SelectItem';
 
 interface IHtmlModel {
     type: string,
-    id : string
+    id : string,
+    default_status : string
 }
 
 interface IState {
@@ -25,15 +26,18 @@ class App extends React.Component<object, IState> {
         html : [
           {
             type : "select",
-            id   : "input-1"
+            id   : "input-1",
+            default_status : "show"
           },
           {
             type : "input",
-            id   : "input-2"
+            id   : "input-2",
+            default_status : "none"
           },
           {
             type : "input",
-            id   : "input-3"
+            id   : "input-3",
+            default_status : "none"
           }
         ],
         events : [
@@ -41,27 +45,41 @@ class App extends React.Component<object, IState> {
              change_id : "input-1",
              seletcted : "one",
              target_id : "input-2",
-             action : "show"  
+             action : "block"  
           },
           {
             change_id : "input-1",
             seletcted : "two",
             target_id : "input-3",
-            action : "hide"  
+            action : "block"  
          }
         ]
       }
-      console.log(this.state);
+
       
   }
 
 
-  public handleEvents(value: string, elementId: string)
+  public handleEvents(elementId: string, value: string)
   {
-     console.log(value,elementId);
-    //  this.state.events.forEach((element:any) => {
-          
-    //  });
+      
+      this.state.events.forEach((element:any) => { 
+      
+           if (element.change_id === elementId && element.seletcted === value) {
+            
+                const newHtml = this.state.html.map((htmlItem)=> {
+                   if(htmlItem.id === element.target_id ) {
+                      htmlItem.default_status = element.action;
+                      return htmlItem;
+                   } else {
+                     return htmlItem;
+                   }
+               });
+               this.setState({html: newHtml});
+                
+           }
+           return false;
+      });
   }
 
 
@@ -74,7 +92,7 @@ class App extends React.Component<object, IState> {
                 
                 this.state.html.map((item:any) => {
                     if (item.type === 'input') {
-                      return <InputItem key={item.id} />
+                      return <InputItem key={item.id} status = {item.default_status} value = {item.id} />
                     } else {
                       return <SelectItem key={item.id} eventHander = {this.handleEvents} elementId= {item.id}  />
                     }  
